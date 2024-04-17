@@ -1,3 +1,5 @@
+import TicketPriority from "@/components/TicketPriority";
+import TicketSatusBadge from "@/components/TicketSatusBadge";
 import { Table, 
         TableBody, 
         TableCell, 
@@ -18,8 +20,16 @@ const DataTable = ({tickets}:Props) => {
                 <TableHeader>
                     <TableRow>
                         <TableHead>Title</TableHead>
-                        <TableHead>Status</TableHead>
-                        <TableHead>Priority</TableHead>
+                        <TableHead>
+                            <div className="flex justify-center">
+                                Status
+                            </div>
+                        </TableHead>
+                        <TableHead>
+                            <div className="flex justify-center">
+                                Priority
+                            </div>
+                        </TableHead>
                         <TableHead>Created At</TableHead>                    
                     </TableRow>
                 </TableHeader>
@@ -27,8 +37,16 @@ const DataTable = ({tickets}:Props) => {
                     {tickets ? tickets.map((ticket) => (
                         <TableRow key={ticket.id} data-href="/">
                             <TableCell>{ticket.title}</TableCell>
-                            <TableCell>{ticket.status}</TableCell>
-                            <TableCell>{ticket.priority}</TableCell>
+                            <TableCell>
+                                <div className="flex justify-center">
+                                    <TicketSatusBadge status={ticket.status}/>
+                                </div>
+                            </TableCell>
+                            <TableCell>
+                                <div className="flex justify-center">
+                                    <TicketPriority priority={ticket.priority}/>
+                                </div>
+                            </TableCell>
                             <TableCell>
                                 {ticket.created.toLocaleDateString("pt-BR", {
                                     day:"2-digit",
